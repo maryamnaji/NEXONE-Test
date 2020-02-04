@@ -1,0 +1,104 @@
+Scenario:
+
+In my scenario I have a registration form with following fields:
+
+1-Name
+	-Required 
+	-Between 5 to 20 alphabetic characters
+2-Email
+	-Required 
+	-Valid email address 
+3-Password
+	-Required 
+	-Between 6 to 10 characters
+4-Agreement 
+	-Should be checked 
+	
+(Note: It's better to have server-side and client-side validation at the same time for following reason:
+	1-By implementing client-side validation  we remove the extra requests sent to the server but the problem with the client-side validation is that the user can disable the client-side validation and submit an invalid data to the database.
+	2-By implementing server-side validation we can make sure that the user can not submit invalid data to the database.) 
+	
+
+Test Cases:
+
+#1		
+Description: User submits a valid form	
+Test Steps: User navigates to the registration page and enters the test data 
+Test Data: {Name = "Maryam", Email = "maryam@gmail.com", Password = "mypassword", Agreement = true }				
+Expected Result: Login should be successful
+Actual Result:	Login was successful				
+Pass/Fail: Pass
+
+#2		
+Description: User submits a form with a name of less than 5 or more than 20 letters
+Test Steps: User navigates to the registration page and enters the test data 
+Test Data: {Name = "Mar", Email = "maryam@gmail.com", Password = "123456", Agreement = true }				
+Expected Result: 
+	-Login should not be successful
+	-Show "Name should be between 5 to 20 alphabetic characters" message to user
+Actual Result:	
+	-Login is not successful				
+	-Show "Name should be between 5 to 20 alphabetic characters" message to user
+Pass/Fail: Pass
+
+#3		
+Description: User submits a form with a name including number or special characters.
+Test Steps: User navigates to the registration page and enters the test data. 
+Test Data: {Name = "Maryam1", Email = "maryam@gmail.com", Password = "123456", Agreement = true }				
+Expected Result: 
+	-Login should not be successful
+	-Show "Name should not include any numbers or special characters" message to user.
+Actual Result:	
+	-Login should not be successful
+	-Show "Name should not include any numbers or special characters" message to user.
+Pass/Fail: Pass
+
+#4		
+Description: User submits a form with an invalid email address.
+Test Steps: user navigates to the registration page and enters the test data .
+Test Data: {Name = "Maryam", Email = "maryamgmail.com", Password = "123456", Agreement = true }				
+Expected Result: 
+	-Login should not be successful
+	-Show "Email is not valid" message to user.
+Actual Result:	
+	-Login should not be successful
+	-Show "Email is not valid" message to user.
+Pass/Fail: Pass
+
+#5		
+Description: User submits a form with an valid email address but already exists in the database. 
+Test Steps: User navigates to the registration page and enters the test data.
+Test Data: {Name = "Maryam", Email = "maryam@gmail.com", Password = "123456", Agreement = true }				
+Expected Result: 
+	-Login should not be successful
+	-Show "This email address exists, Please enter another email or use forget password to recover your account!" message to the user.
+Actual Result:	
+	-Login should not be successful
+	-Show "This email address exists, Please enter another email or use forget password to recover your account!" message to the user.
+Pass/Fail: Pass
+
+#6		
+Description: User submits a form with an invalid password 
+Test Steps: User navigates to the registration page and enters the test data 
+Test Data: {Name = "Maryam", Email = "maryam@gmail.com", Password = "123", Agreement = true }				
+Expected Result: 
+	-Login should not be successful
+	-Show "The password should be between 6 to 10 characters" message to the user.
+Actual Result:	
+	-Login should not be successful
+	-Show "The password should be between 6 to 10 characters" message to the user.
+Pass/Fail: Pass
+
+#7		
+Description: User submits a form without accepting the agreement.
+Test Steps: User navigates to the registration page and enters the test data.
+Test Data: {Name = "Maryam", Email = "maryam@gmail.com", Password = "123456", Agreement = false }				
+Expected Result: 
+	-Login should not be successful
+	-Show "You need to read and accept the agreement to register!" message to the user.
+Actual Result:	
+	-Login should not be successful
+	-Show "You need to read and accept the agreement to register!" message to the user.
+Pass/Fail: Pass
+	    
+	

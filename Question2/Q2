@@ -1,0 +1,146 @@
+Elevator actions(Methods)
+
+	1-InitialCheck		
+	2-Open elevator door	
+	3-Close elevator door	
+	4-Move Up
+	5-Move Down	
+	6-Stop	
+	7-Press alarm
+
+Elevator detectors
+	1-Door detector
+	2-Capacity detector 
+	3-Floor detector 
+
+----------------------
+
+Public class Elevator
+{
+	//To check whether the elevator is in offline or online mode
+	bool InitialCheck()
+	{
+		return true if everything is safe and elevator is ready to be used otherwise return false
+	}
+	
+	//To open the elevator door
+	bool OpenDoor()
+	{
+		open the door and return true if the door successfully opened otherwise return false
+	}
+	
+	//To close the elevator door
+	bool CloseDoor(int delay)
+	{	
+		if !obstacle
+		{
+			close the door after {delay} seconds and return true if the door successfully closed 
+		}
+		else
+		{
+			return false
+		}
+	}
+	
+	//Move elevator up
+	MoveUp(int floorNumber)
+	{
+		move up the elevator to the requested floor
+		Stop(floorNumber)
+	}
+	
+	//Move elevator down
+	MoveDown(int floorNumber)
+	{
+		move down the elevator to the requested floor
+		Stop(floorNumber)
+	}
+	
+	//Stop elevator
+	Stop(int floorNumber)
+	{
+		stop the elevator
+	}
+	
+	//Alarm
+	void PressAlarm(int floorNumber)
+	{
+		StartSounding()
+		CallEmergency()
+		MoveToClosest(floorNumber)
+	}	
+	
+	void MoveToClosest(int floorNumber)
+	{
+		Start sounding and flash the lights
+	}
+	
+	void StartSounding()
+	{
+		Start sounding and flash the lights
+	}
+	
+	void CallEmergency()
+	{
+		Call emergency
+	}
+		
+}
+
+
+class Program
+{
+	//Wait for getting a new command from the user
+	var pressedKey = get pressed key
+	
+	//Get the current floor
+	var currentFloor = get the current floor from floor detector
+	
+	
+	 if pressedKey is upKey or downKey
+	{
+		if currentFloor < requestedFloor
+		{
+			MoveUp(requestedFloor)
+			OpenDoor()
+			CloseDoor(5)
+		}
+		else if currentFloor > requestedFloor
+		{
+			MoveDown(requestedFloor)
+			OpenDoor()
+			CloseDoor(5)
+		}
+		else
+		{		
+			OpenDoor()
+			CloseDoor(5)
+		}		
+	}
+	else if pressedKey is numberKey
+	{
+		if currentFloor < numberKey
+		{
+			MoveUp(numberKey)
+			OpenDoor()
+			CloseDoor(5)
+		}
+		else if currentFloor > numberKey
+		{
+			MoveDown(numberKey)
+			OpenDoor()
+			CloseDoor(5)
+		}
+		else if pressedKey is alarm
+		{
+			PressAlarm(currentFloor)
+		}
+		else
+		{		
+			OpenDoor()
+			CloseDoor(5)
+		}		
+	}
+	
+}		
+	
